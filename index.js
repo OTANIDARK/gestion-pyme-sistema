@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 5000; 
 
 // Middleware para entender JSON
 app.use(express.json());
@@ -39,14 +39,66 @@ app.put('/pedidos/:id', (req, res) => {
 });
 
 // D - Eliminar un pedido (DELETE)
-app.get('/pedidos/eliminar/:id', (req, res) => { // Usamos GET por facilidad de prueba en navegador
+app.get('/pedidos/eliminar/:id', (req, res) => {
     const id = parseInt(req.params.id);
     pedidos = pedidos.filter(p => p.id !== id);
     res.json({ mensaje: `Pedido ${id} eliminado` });
 });
 
+// RUTA PRINCIPAL CON BOTÓN (HTML LIMPIO)
 app.get('/', (req, res) => {
-    res.send('Sistema de Gestión PyME con Node.js - Activo');
+    res.send(`
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Panel de Control PyME</title>
+        <style>
+            body { 
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                height: 100vh; 
+                margin: 0; 
+                background-color: #f0f2f5; 
+            }
+            .card { 
+                text-align: center; 
+                padding: 50px; 
+                background: white; 
+                border-radius: 15px; 
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+                max-width: 450px; 
+            }
+            h1 { color: #1c1e21; margin-bottom: 10px; }
+            p { color: #606770; margin-bottom: 30px; line-height: 1.5; }
+            .btn { 
+                background-color: #007bff; 
+                color: white; 
+                padding: 15px 30px; 
+                text-decoration: none; 
+                border-radius: 8px; 
+                font-weight: bold; 
+                font-size: 1.1rem; 
+                transition: background 0.3s, transform 0.2s;
+                display: inline-block;
+            }
+            .btn:hover { 
+                background-color: #0056b3; 
+                transform: translateY(-2px);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>Sistema PyME Activo</h1>
+            <p>El backend de gestión de pedidos está corriendo correctamente en el puerto 5000.</p>
+            <a href="/pedidos" class="btn">Ver Listado de Pedidos (JSON)</a>
+        </div>
+    </body>
+    </html>
+    `);
 });
 
 app.listen(port, () => {

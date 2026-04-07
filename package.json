@@ -1,0 +1,24 @@
+{
+  "name": "gestion-pyme-sistema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OTANIDARK/gestion-pyme-sistema.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/OTANIDARK/gestion-pyme-sistema/issues"
+  },
+  "homepage": "https://github.com/OTANIDARK/gestion-pyme-sistema#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
